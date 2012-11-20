@@ -1,0 +1,54 @@
+<?php
+
+/**
+ * @file
+ * A schema databasa for metattags drupal training 101.
+ */
+ 
+ 
+function mymetatags_install() {
+
+}
+
+function mymetatags_uninstall() {
+
+}
+
+function mymetatags_schema() {
+  $schema['mymetatags'] = array(
+    // example (partial) specification for table "metatags" from drupal training 101
+    'description' => 'The base table for metatags.', 
+    'fields' => array(
+      'mtid' => array(
+        'description' => 'The primary identifier for a metatag.', 
+        'type' => 'serial', 
+		'size' => 'normal',
+        'unsigned' => TRUE, 
+        'not null' => TRUE,
+      ), 
+      
+      'normal-path' => array(
+        'description' => 'Ruta de la Metatag.', 
+        'type' => 'varchar', 
+        'length' => 255, 
+        'not null' => TRUE, 
+        
+      ), 
+      'data' => array(
+        'description' => 'El texto de nuestras metatags', 
+        'type' => 'text', 
+		'size' => 'big',
+       
+      ),
+    ), 
+  
+    //'unique keys' => array(
+     // 'normal_path' => array('normal_path'),
+    //), 
+     
+    'primary key' => array('mtid'),
+  );
+  return $schema;
+}
+
+?>

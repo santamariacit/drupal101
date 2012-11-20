@@ -1,0 +1,137 @@
+<?php
+/**
+ * @file
+ * A block module that insert metatags in the header of the site.
+ */
+ 
+function mymetatags_permission() {
+  return array(
+    'manage page meta tags' => array(
+      'title' => 'Administrar Meta Tags', 
+      'description' => 'Administracion del Modulo MyMetaTags del Training Drupal 101.',
+	  'restric access' => TRUE,
+	  'warning' => TRUE,
+	  
+    ),
+  );
+}
+
+function mymetatags_menu() {
+		
+    $items['admin/config/search/mymetatags'] = array(
+	  'title' => 'My Meta Tags',
+	  'description' => 'Administracion y settings para My Meta Tags',
+	  'file' => 'mymetatags.page.inc',
+      'page callback' => 'mymetatags_settings',
+	  'access callback' => TRUE,
+	  'type' => MENU_NORMAL_ITEM,
+      
+    );
+	
+	$items['admin/config/search/mymetatags/overview'] = array(
+	  'title' => 'Overview My Meta Tags',
+	  'file' => 'mymetatags.page.inc',
+      'page callback' => 'mymetatags_overview',
+	  'access callback' => TRUE,
+	  'type' => MENU_LOCAL_TASK,
+      
+    );
+	
+	$items['admin/config/search/mymetatags/list'] = array(
+	  'title' => 'List My Meta Tags',
+	  'file' => 'mymetatags.page.inc',
+      'page callback' => 'mymetatags_list',
+	  'access callback' => TRUE,
+	  'type' => MENU_DEFAULT_LOCAL_TASK,
+      
+    );
+	
+	$items['admin/config/search/mymetatags/update'] = array(
+	  'title' => 'Update My Meta Tags',
+	  'file' => 'mymetatags.page.inc',
+      'page callback' => 'mymetatags_update',
+	  'access callback' => TRUE,
+	  'type' => MENU_LOCAL_TASK,
+      
+    );
+    return $items;
+}
+
+function mymetatags_mymetatags_list(){
+	
+$MetaTags = array();
+$MetaTags["description"] = 'Descripcion del site';
+$MetaTags["keywords"] = 'Palabras clave';
+$MetaTags["robot"] = 'Visitas de robot';
+$MetaTags["author"] = 'Quien hizo el site';
+$MetaTags["refresh"] = 'tasa de refresco';
+$MetaTags["copyright"] = 'derchos de autor';
+$MetaTags["revisit-after"] = 'volver a visitar para los spiders';
+$MetaTags["generator"] = 'generador de la pagina quien la provee';
+$MetaTags["language"] = 'Idioma';
+
+return $MetaTags;
+}
+
+function mymetatags_mymetatags_map(){
+
+$result = db_query("SELECT * from {url_alias}");
+//$record = array();
+//$result1 = $result->fetchAssoc();
+// foreach ($result as $record) {
+  // Do something with each $record
+  //$node = node_load($record->pid);
+ // $record = $result->fetchAssoc();
+//}
+	return 'cacho';//$node;
+}
+
+
+
+
+/*function mymetatags_mymetatags_map() {
+  $patterns = &drupal_static(__FUNCTION__);
+  if (!isset($patterns)) {
+    $paths = module_invoke_all('admin_paths');
+    drupal_alter('admin_paths', $paths);
+    // Combine all admin paths into one array, and likewise for non-admin paths,
+    // for easier handling.
+    $patterns = array();
+    $patterns['admin'] = array();
+    $patterns['non_admin'] = array();
+    foreach ($paths as $path => $enabled) {
+      if ($enabled) {
+        $patterns['admin'][] = $path;
+      }
+      else {
+        $patterns['non_admin'][] = $path;
+      }
+    }
+    $patterns['admin'] = implode("\n", $patterns['admin']);
+    $patterns['non_admin'] = implode("\n", $patterns['non_admin']);
+  }
+  return $patterns;
+}*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

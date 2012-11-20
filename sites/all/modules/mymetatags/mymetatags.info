@@ -1,0 +1,8 @@
+name = My Meta Tags
+description = Example Module for Drupal Training 101.
+package = MyMetaTags
+core = 7.x
+files[] = mymetatags.module
+files[] = mymetatags.install
+files[] = mymetatags.page.inc
+version = 7.x-1.0
